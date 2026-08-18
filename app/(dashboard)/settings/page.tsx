@@ -12,7 +12,7 @@ export default async function SettingsPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-semibold tracking-tight">Settings</h1>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-base text-muted-foreground">
           These details appear on every bill and quotation you create.
         </p>
       </div>

@@ -36,7 +36,7 @@ export function QuotationLineItemRow({
     <div className="space-y-3 rounded-md border p-3">
       <div className="flex items-end gap-2">
         <div className="flex-1 space-y-1.5">
-          <Label className="text-xs text-muted-foreground">Item</Label>
+          <Label className="text-sm font-medium text-muted-foreground">Item</Label>
           <Input
             value={line.item_name}
             onChange={(e) => onChange({ item_name: e.target.value, product_id: null })}
@@ -59,7 +59,7 @@ export function QuotationLineItemRow({
 
       <div className="grid grid-cols-3 gap-3">
         <div className="space-y-1.5">
-          <Label className="text-xs text-muted-foreground">Qty</Label>
+          <Label className="text-sm font-medium text-muted-foreground">Qty</Label>
           <Input
             type="number"
             min="0"
@@ -69,7 +69,7 @@ export function QuotationLineItemRow({
           />
         </div>
         <div className="space-y-1.5">
-          <Label className="text-xs text-muted-foreground">Rate</Label>
+          <Label className="text-sm font-medium text-muted-foreground">Rate</Label>
           <Input
             type="number"
             min="0"
@@ -79,7 +79,7 @@ export function QuotationLineItemRow({
           />
         </div>
         <div className="space-y-1.5">
-          <Label className="text-xs text-muted-foreground">Disc %</Label>
+          <Label className="text-sm font-medium text-muted-foreground">Disc %</Label>
           <Input
             type="number"
             min="0"
@@ -91,7 +91,7 @@ export function QuotationLineItemRow({
         </div>
       </div>
 
-      <div className="flex items-center justify-end border-t pt-2 text-sm font-semibold">
+      <div className="flex items-center justify-end border-t pt-2 text-base font-semibold">
         Total: {formatCurrency(total)}
       </div>
     </div>

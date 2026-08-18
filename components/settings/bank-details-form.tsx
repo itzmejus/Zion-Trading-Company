@@ -57,34 +57,34 @@ export function BankDetailsForm({ profile }: { profile: CompanyProfile }) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <FormField
-          control={form.control}
-          name="bank_name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Bank name</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="account_holder"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Account holder name</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <div className="grid gap-4 sm:grid-cols-2">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <div className="grid grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
+          <FormField
+            control={form.control}
+            name="bank_name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Bank name</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="account_holder"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Account holder name</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <FormField
             control={form.control}
             name="account_number"
@@ -111,22 +111,22 @@ export function BankDetailsForm({ profile }: { profile: CompanyProfile }) {
               </FormItem>
             )}
           />
+          <FormField
+            control={form.control}
+            name="branch"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Branch</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         </div>
-        <FormField
-          control={form.control}
-          name="branch"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Branch</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
 
-        <Button type="submit" disabled={isSaving}>
+        <Button type="submit" size="lg" disabled={isSaving} className="w-full sm:w-auto">
           {isSaving ? "Saving..." : "Save bank details"}
         </Button>
       </form>

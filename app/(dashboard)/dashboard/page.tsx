@@ -40,7 +40,7 @@ export default async function DashboardPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
-        <p className="text-sm text-muted-foreground">Overview of your bills, quotations and stock.</p>
+        <p className="text-base text-muted-foreground">Overview of your bills, quotations and stock.</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -48,7 +48,7 @@ export default async function DashboardPage() {
           <Card key={stat.label}>
             <CardContent className="flex items-start justify-between gap-2 pt-6">
               <div>
-                <p className="text-sm text-muted-foreground">{stat.label}</p>
+                <p className="text-base text-muted-foreground">{stat.label}</p>
                 <p className="text-2xl font-semibold">{stat.value}</p>
                 <p className="text-xs text-muted-foreground">{stat.sub}</p>
               </div>
@@ -61,11 +61,11 @@ export default async function DashboardPage() {
       <div className="grid gap-4 lg:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Recent bills</CardTitle>
+            <CardTitle>Recent bills</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             {stats.recentInvoices.length === 0 && (
-              <p className="text-sm text-muted-foreground">No bills yet.</p>
+              <p className="text-base text-muted-foreground">No bills yet.</p>
             )}
             {stats.recentInvoices.map((invoice) => (
               <Link
@@ -94,7 +94,7 @@ export default async function DashboardPage() {
           </CardHeader>
           <CardContent className="space-y-3">
             {stats.lowStockProducts.length === 0 && (
-              <p className="text-sm text-muted-foreground">All products are well stocked.</p>
+              <p className="text-base text-muted-foreground">All products are well stocked.</p>
             )}
             {stats.lowStockProducts.map((product) => (
               <div

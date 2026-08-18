@@ -12,7 +12,7 @@ export default async function QuotationsPage() {
       <div className="flex items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Quotations</h1>
-          <p className="text-sm text-muted-foreground">Price quotes sent to your companies.</p>
+          <p className="text-base text-muted-foreground">Price quotes sent to your companies.</p>
         </div>
         <LinkButton href="/quotations/new">
           <Plus className="size-4" />

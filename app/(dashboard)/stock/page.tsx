@@ -10,7 +10,7 @@ export default async function StockPage() {
       <div className="flex items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Stock</h1>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-base text-muted-foreground">
             Products available for bills and quotations.
           </p>
         </div>

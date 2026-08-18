@@ -122,78 +122,73 @@ export function ProductFormDialog({ product }: { product?: Product }) {
           </>
         )}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-2xl">
+      <DialogContent className="sm:max-w-3xl">
         <DialogHeader>
           <DialogTitle>{isEdit ? "Edit product" : "Add product"}</DialogTitle>
         </DialogHeader>
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="grid grid-cols-1 gap-4 sm:grid-cols-2"
-          >
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Item name</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="hsn_code"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>HSN code</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <div className="grid grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Item name</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="hsn_code"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>HSN code</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="unit"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Unit</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="Nos / Box / Kg" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="supplier_name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Supplier name</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="Received from" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <NumberField control={form.control} name="landing_cost" label="Landing cost (₹)" />
+              <NumberField control={form.control} name="selling_cost" label="Selling cost (₹)" />
+              <NumberField control={form.control} name="sgst_percent" label="SGST %" max={100} />
+              <NumberField control={form.control} name="cgst_percent" label="CGST %" max={100} />
+              <NumberField control={form.control} name="stock_qty" label="Stock qty" />
+            </div>
 
-            <FormField
-              control={form.control}
-              name="unit"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Unit</FormLabel>
-                  <FormControl>
-                    <Input {...field} placeholder="Nos / Box / Kg" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="supplier_name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Supplier name</FormLabel>
-                  <FormControl>
-                    <Input {...field} placeholder="Received from" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <NumberField control={form.control} name="landing_cost" label="Landing cost (₹)" />
-            <NumberField control={form.control} name="selling_cost" label="Selling cost (₹)" />
-
-            <NumberField control={form.control} name="sgst_percent" label="SGST %" max={100} />
-            <NumberField control={form.control} name="cgst_percent" label="CGST %" max={100} />
-
-            <NumberField control={form.control} name="stock_qty" label="Stock qty" />
-
-            <Button type="submit" className="self-end" disabled={isSaving}>
+            <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={isSaving}>
               {isSaving ? "Saving..." : isEdit ? "Save changes" : "Add product"}
             </Button>
           </form>

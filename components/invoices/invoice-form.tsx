@@ -148,9 +148,9 @@ export function InvoiceForm({
     <div className="space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">{companyProfile.company_name}</CardTitle>
+          <CardTitle>{companyProfile.company_name}</CardTitle>
         </CardHeader>
-        <CardContent className="text-sm text-muted-foreground">
+        <CardContent className="text-base text-muted-foreground">
           {[companyProfile.address, companyProfile.city, companyProfile.state, companyProfile.pincode]
             .filter(Boolean)
             .join(", ") || "Add your address in Settings"}
@@ -160,7 +160,7 @@ export function InvoiceForm({
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Bill details</CardTitle>
+          <CardTitle>Bill details</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-1.5 sm:col-span-2">
@@ -174,7 +174,7 @@ export function InvoiceForm({
               }}
             />
             {selectedCustomer && (
-              <p className="text-sm text-muted-foreground">
+              <p className="text-base text-muted-foreground">
                 {[selectedCustomer.address, selectedCustomer.city, selectedCustomer.state, selectedCustomer.pincode]
                   .filter(Boolean)
                   .join(", ")}
@@ -218,7 +218,7 @@ export function InvoiceForm({
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Items</CardTitle>
+          <CardTitle>Items</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-3">
@@ -247,7 +247,7 @@ export function InvoiceForm({
       </Card>
 
       <Card>
-        <CardContent className="ml-auto max-w-sm space-y-2 pt-6 text-sm">
+        <CardContent className="ml-auto max-w-sm space-y-2 pt-6 text-base">
           <div className="flex justify-between">
             <span className="text-muted-foreground">Subtotal</span>
             <span>{formatCurrency(totals.subtotal)}</span>
@@ -273,7 +273,7 @@ export function InvoiceForm({
               <span>{formatCurrency(totals.igstTotal)}</span>
             </div>
           )}
-          <div className="flex justify-between border-t pt-2 text-base font-semibold">
+          <div className="flex justify-between border-t pt-2 text-lg font-bold">
             <span>Grand total</span>
             <span>{formatCurrency(totals.grandTotal)}</span>
           </div>
@@ -282,7 +282,7 @@ export function InvoiceForm({
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Notes</CardTitle>
+          <CardTitle>Notes</CardTitle>
         </CardHeader>
         <CardContent>
           <Textarea

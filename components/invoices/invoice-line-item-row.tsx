@@ -42,7 +42,7 @@ export function InvoiceLineItemRow({
     <div className="space-y-3 rounded-md border p-3">
       <div className="flex items-end gap-2">
         <div className="flex-1 space-y-1.5">
-          <Label className="text-xs text-muted-foreground">Item</Label>
+          <Label className="text-sm font-medium text-muted-foreground">Item</Label>
           <Input
             value={line.item_name}
             onChange={(e) => onChange({ item_name: e.target.value, product_id: null })}
@@ -65,11 +65,11 @@ export function InvoiceLineItemRow({
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
         <div className="space-y-1.5">
-          <Label className="text-xs text-muted-foreground">HSN</Label>
+          <Label className="text-sm font-medium text-muted-foreground">HSN</Label>
           <Input value={line.hsn_code} onChange={(e) => onChange({ hsn_code: e.target.value })} />
         </div>
         <div className="space-y-1.5">
-          <Label className="text-xs text-muted-foreground">Qty</Label>
+          <Label className="text-sm font-medium text-muted-foreground">Qty</Label>
           <Input
             type="number"
             min="0"
@@ -79,7 +79,7 @@ export function InvoiceLineItemRow({
           />
         </div>
         <div className="space-y-1.5">
-          <Label className="text-xs text-muted-foreground">Rate</Label>
+          <Label className="text-sm font-medium text-muted-foreground">Rate</Label>
           <Input
             type="number"
             min="0"
@@ -89,7 +89,7 @@ export function InvoiceLineItemRow({
           />
         </div>
         <div className="space-y-1.5">
-          <Label className="text-xs text-muted-foreground">Disc %</Label>
+          <Label className="text-sm font-medium text-muted-foreground">Disc %</Label>
           <Input
             type="number"
             min="0"
@@ -100,7 +100,7 @@ export function InvoiceLineItemRow({
           />
         </div>
         <div className="space-y-1.5">
-          <Label className="text-xs text-muted-foreground">SGST %</Label>
+          <Label className="text-sm font-medium text-muted-foreground">SGST %</Label>
           <Input
             type="number"
             min="0"
@@ -111,7 +111,7 @@ export function InvoiceLineItemRow({
           />
         </div>
         <div className="space-y-1.5">
-          <Label className="text-xs text-muted-foreground">CGST %</Label>
+          <Label className="text-sm font-medium text-muted-foreground">CGST %</Label>
           <Input
             type="number"
             min="0"
@@ -123,7 +123,7 @@ export function InvoiceLineItemRow({
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-t pt-2 text-sm">
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-t pt-2 text-base">
         <span className="text-muted-foreground">Gross: {formatCurrency(calc.gross)}</span>
         {sameState ? (
           <span className="text-muted-foreground">

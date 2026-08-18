@@ -14,7 +14,7 @@ export default async function NewQuotationPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-semibold tracking-tight">New Quotation</h1>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-base text-muted-foreground">
           Create a price quote for one of your companies.
         </p>
       </div>

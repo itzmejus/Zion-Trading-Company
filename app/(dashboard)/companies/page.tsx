@@ -10,7 +10,7 @@ export default async function CompaniesPage() {
       <div className="flex items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Companies</h1>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-base text-muted-foreground">
             Customers you raise bills and quotations for.
           </p>
         </div>

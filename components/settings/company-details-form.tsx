@@ -75,42 +75,40 @@ export function CompanyDetailsForm({ profile }: { profile: CompanyProfile }) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <FormField
-          control={form.control}
-          name="company_name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Company name</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="gstin"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>GSTIN</FormLabel>
-              <FormControl>
-                <Input {...field} placeholder="29ABCDE1234F1Z5" />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <div className="grid gap-4 sm:grid-cols-2">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <div className="grid grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
+          <FormField
+            control={form.control}
+            name="company_name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Company name</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="gstin"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>GSTIN</FormLabel>
+                <FormControl>
+                  <Input {...field} placeholder="29ABCDE1234F1Z5" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <FormField
             control={form.control}
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Phone</FormLabel>
+                <FormLabel>Phone number</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -123,7 +121,7 @@ export function CompanyDetailsForm({ profile }: { profile: CompanyProfile }) {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Email address</FormLabel>
                 <FormControl>
                   <Input type="email" {...field} />
                 </FormControl>
@@ -131,23 +129,19 @@ export function CompanyDetailsForm({ profile }: { profile: CompanyProfile }) {
               </FormItem>
             )}
           />
-        </div>
-
-        <FormField
-          control={form.control}
-          name="address"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Address</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <div className="grid gap-4 sm:grid-cols-3">
+          <FormField
+            control={form.control}
+            name="address"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Address</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <FormField
             control={form.control}
             name="city"
@@ -198,9 +192,6 @@ export function CompanyDetailsForm({ profile }: { profile: CompanyProfile }) {
               </FormItem>
             )}
           />
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2">
           <FormField
             control={form.control}
             name="invoice_prefix"
@@ -229,7 +220,7 @@ export function CompanyDetailsForm({ profile }: { profile: CompanyProfile }) {
           />
         </div>
 
-        <Button type="submit" disabled={isSaving}>
+        <Button type="submit" size="lg" disabled={isSaving} className="w-full sm:w-auto">
           {isSaving ? "Saving..." : "Save company details"}
         </Button>
       </form>

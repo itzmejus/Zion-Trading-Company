@@ -88,45 +88,45 @@ export function CustomerFormDialog({ customer }: { customer?: Customer }) {
           </>
         )}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-lg">
+      <DialogContent className="sm:max-w-2xl">
         <DialogHeader>
           <DialogTitle>{isEdit ? "Edit company" : "Add company"}</DialogTitle>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Company name</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="gstin"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>GSTIN</FormLabel>
-                  <FormControl>
-                    <Input {...field} placeholder="29ABCDE1234F1Z5" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className="grid gap-4 sm:grid-cols-2">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <div className="grid grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Company name</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="gstin"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>GSTIN</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="29ABCDE1234F1Z5" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <FormField
                 control={form.control}
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Phone</FormLabel>
+                    <FormLabel>Phone number</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
@@ -139,7 +139,7 @@ export function CustomerFormDialog({ customer }: { customer?: Customer }) {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>Email address</FormLabel>
                     <FormControl>
                       <Input type="email" {...field} />
                     </FormControl>
@@ -147,21 +147,19 @@ export function CustomerFormDialog({ customer }: { customer?: Customer }) {
                   </FormItem>
                 )}
               />
-            </div>
-            <FormField
-              control={form.control}
-              name="address"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Address</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className="grid gap-4 sm:grid-cols-3">
+              <FormField
+                control={form.control}
+                name="address"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Address</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <FormField
                 control={form.control}
                 name="city"
@@ -213,7 +211,7 @@ export function CustomerFormDialog({ customer }: { customer?: Customer }) {
                 )}
               />
             </div>
-            <Button type="submit" className="w-full" disabled={isSaving}>
+            <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={isSaving}>
               {isSaving ? "Saving..." : isEdit ? "Save changes" : "Add company"}
             </Button>
           </form>
