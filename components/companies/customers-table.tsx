@@ -25,7 +25,9 @@ export function CustomersTable({ customers }: { customers: Customer[] }) {
     if (!q) return customers
     return customers.filter(
       (c) =>
-        c.name.toLowerCase().includes(q) || c.gstin.toLowerCase().includes(q)
+        c.name.toLowerCase().includes(q) ||
+        c.gstin.toLowerCase().includes(q) ||
+        c.contact_person.toLowerCase().includes(q)
     )
   }, [customers, query])
 
@@ -36,7 +38,7 @@ export function CustomersTable({ customers }: { customers: Customer[] }) {
         <Input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search companies or GSTIN..."
+          placeholder="Search companies, contact person, or GSTIN..."
           className="pl-8"
         />
       </div>
@@ -46,6 +48,7 @@ export function CustomersTable({ customers }: { customers: Customer[] }) {
           <TableHeader>
             <TableRow>
               <TableHead>Company</TableHead>
+              <TableHead>Contact person</TableHead>
               <TableHead>GSTIN</TableHead>
               <TableHead>State</TableHead>
               <TableHead>Phone</TableHead>
@@ -55,7 +58,7 @@ export function CustomersTable({ customers }: { customers: Customer[] }) {
           <TableBody>
             {filtered.length === 0 && (
               <TableRow>
-                <TableCell colSpan={5} className="py-8 text-center text-muted-foreground">
+                <TableCell colSpan={6} className="py-8 text-center text-muted-foreground">
                   No companies found.
                 </TableCell>
               </TableRow>
@@ -63,6 +66,7 @@ export function CustomersTable({ customers }: { customers: Customer[] }) {
             {filtered.map((customer) => (
               <TableRow key={customer.id}>
                 <TableCell className="font-medium">{customer.name}</TableCell>
+                <TableCell>{customer.contact_person || "—"}</TableCell>
                 <TableCell>{customer.gstin || "—"}</TableCell>
                 <TableCell>{customer.state || "—"}</TableCell>
                 <TableCell>{customer.phone || "—"}</TableCell>

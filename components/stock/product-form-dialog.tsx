@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/form"
 import { createProduct, updateProduct } from "@/lib/actions/products"
 import { productSchema, type ProductValues } from "@/lib/validation/product"
+import { selectOnFocus } from "@/lib/utils"
 import type { Product } from "@/lib/types/database"
 
 function NumberField({
@@ -52,7 +53,8 @@ function NumberField({
               min="0"
               max={max}
               {...field}
-              onChange={(e) => field.onChange(e.target.valueAsNumber)}
+              onFocus={selectOnFocus}
+              onChange={(e) => field.onChange(e.target.valueAsNumber || 0)}
             />
           </FormControl>
           <FormMessage />

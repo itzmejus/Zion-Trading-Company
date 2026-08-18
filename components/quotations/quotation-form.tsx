@@ -137,7 +137,7 @@ export function QuotationForm({
         <CardHeader>
           <CardTitle>Quotation details</CardTitle>
         </CardHeader>
-        <CardContent className="grid gap-4 sm:grid-cols-2">
+        <CardContent className="grid gap-4 sm:grid-cols-3">
           <div className="space-y-1.5 sm:col-span-2">
             <Label>Quote for</Label>
             <CustomerCombobox

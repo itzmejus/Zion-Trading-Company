@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { ProductPickerButton } from "@/components/shared/product-picker-button"
 import { formatCurrency } from "@/lib/format"
+import { selectOnFocus } from "@/lib/utils"
 import type { Product } from "@/lib/types/database"
 import type { QuotationLineState } from "@/components/quotations/quotation-form"
 
@@ -34,8 +35,8 @@ export function QuotationLineItemRow({
 
   return (
     <div className="space-y-3 rounded-md border p-3">
-      <div className="flex items-end gap-2">
-        <div className="flex-1 space-y-1.5">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
+        <div className="w-full space-y-1.5 sm:w-1/2">
           <Label className="text-sm font-medium text-muted-foreground">Item</Label>
           <Input
             value={line.item_name}
@@ -43,18 +44,20 @@ export function QuotationLineItemRow({
             placeholder="Item name"
           />
         </div>
-        <ProductPickerButton products={products} onSelect={handlePickProduct} />
-        <Button
-          type="button"
-          variant="ghost"
-          size="icon"
-          onClick={onRemove}
-          disabled={!canRemove}
-          className="shrink-0"
-        >
-          <X className="size-4" />
-          <span className="sr-only">Remove line</span>
-        </Button>
+        <div className="flex items-center gap-2">
+          <ProductPickerButton products={products} onSelect={handlePickProduct} />
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            onClick={onRemove}
+            disabled={!canRemove}
+            className="shrink-0"
+          >
+            <X className="size-4" />
+            <span className="sr-only">Remove line</span>
+          </Button>
+        </div>
       </div>
 
       <div className="grid grid-cols-3 gap-3">
@@ -65,6 +68,7 @@ export function QuotationLineItemRow({
             min="0"
             step="0.01"
             value={line.qty}
+            onFocus={selectOnFocus}
             onChange={(e) => onChange({ qty: e.target.valueAsNumber || 0 })}
           />
         </div>
@@ -75,6 +79,7 @@ export function QuotationLineItemRow({
             min="0"
             step="0.01"
             value={line.rate}
+            onFocus={selectOnFocus}
             onChange={(e) => onChange({ rate: e.target.valueAsNumber || 0 })}
           />
         </div>
@@ -86,6 +91,7 @@ export function QuotationLineItemRow({
             max="100"
             step="0.01"
             value={line.discount_percent}
+            onFocus={selectOnFocus}
             onChange={(e) => onChange({ discount_percent: e.target.valueAsNumber || 0 })}
           />
         </div>

@@ -27,13 +27,22 @@ export function ProductPickerButton({
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger
-        render={<Button type="button" variant="outline" size="icon" aria-label="Pick from stock" />}
+        render={
+          <Button
+            type="button"
+            variant="outline"
+            className="shrink-0 gap-1.5"
+            aria-label="Pick an item from stock"
+            title="Pick an item from stock"
+          />
+        }
       >
         <PackageSearch className="size-4" />
+        <span className="hidden sm:inline">From stock</span>
       </PopoverTrigger>
       <PopoverContent className="w-72 p-0" align="end">
         <Command>
-          <CommandInput placeholder="Search stock..." />
+          <CommandInput placeholder="Search stock by item name..." />
           <CommandList>
             <CommandEmpty>No product found.</CommandEmpty>
             <CommandGroup>

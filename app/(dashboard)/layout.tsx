@@ -11,11 +11,11 @@ export default async function DashboardLayout({
   const companyName = profile.company_name || "Zion Trading Company"
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex h-dvh overflow-hidden">
       <AppSidebar companyName={companyName} />
-      <div className="flex min-w-0 flex-1 flex-col">
+      <div className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
         <MobileTopbar companyName={companyName} />
-        <main className="flex-1 overflow-x-hidden p-4 md:p-8">{children}</main>
+        <main className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto p-4 md:p-8">{children}</main>
       </div>
     </div>
   )

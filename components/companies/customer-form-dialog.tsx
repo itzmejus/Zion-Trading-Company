@@ -9,13 +9,6 @@ import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import {
   Dialog,
   DialogContent,
   DialogHeader,
@@ -32,7 +25,6 @@ import {
 } from "@/components/ui/form"
 import { createCustomer, updateCustomer } from "@/lib/actions/customers"
 import { customerSchema, type CustomerValues } from "@/lib/validation/customer"
-import { INDIAN_STATES } from "@/lib/indian-states"
 import type { Customer } from "@/lib/types/database"
 
 export function CustomerFormDialog({ customer }: { customer?: Customer }) {
@@ -44,12 +36,13 @@ export function CustomerFormDialog({ customer }: { customer?: Customer }) {
     resolver: zodResolver(customerSchema),
     defaultValues: {
       name: customer?.name ?? "",
+      contact_person: customer?.contact_person ?? "",
       gstin: customer?.gstin ?? "",
       phone: customer?.phone ?? "",
       email: customer?.email ?? "",
       address: customer?.address ?? "",
       city: customer?.city ?? "",
-      state: customer?.state ?? "",
+      state: customer?.state ?? "Kerala",
       pincode: customer?.pincode ?? "",
     },
   })
@@ -103,6 +96,19 @@ export function CustomerFormDialog({ customer }: { customer?: Customer }) {
                     <FormLabel>Company name</FormLabel>
                     <FormControl>
                       <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="contact_person"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Contact person</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="Who do we usually deal with?" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -179,20 +185,9 @@ export function CustomerFormDialog({ customer }: { customer?: Customer }) {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>State</FormLabel>
-                    <Select value={field.value} onValueChange={field.onChange}>
-                      <FormControl>
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select state" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {INDIAN_STATES.map((state) => (
-                          <SelectItem key={state} value={state}>
-                            {state}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}

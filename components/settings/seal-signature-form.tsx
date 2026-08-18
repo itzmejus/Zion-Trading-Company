@@ -45,10 +45,10 @@ export function SealSignatureForm({ profile }: { profile: CompanyProfile }) {
   }
 
   return (
-    <div className="grid gap-8 sm:grid-cols-2">
-      <div className="space-y-3">
+    <div className="grid gap-6 sm:grid-cols-2">
+      <div className="space-y-3 rounded-lg border bg-muted/20 p-4">
         <Label>Company seal</Label>
-        <div className="flex h-32 w-32 items-center justify-center overflow-hidden rounded-md border bg-white">
+        <div className="flex h-32 w-32 items-center justify-center overflow-hidden rounded-md border border-dashed bg-white">
           {sealUrl ? (
             <Image
               src={sealUrl}
@@ -82,9 +82,9 @@ export function SealSignatureForm({ profile }: { profile: CompanyProfile }) {
         </Button>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-3 rounded-lg border bg-muted/20 p-4">
         <Label>Authorized signature</Label>
-        <div className="flex h-32 w-full max-w-xs items-center justify-center overflow-hidden rounded-md border bg-white">
+        <div className="flex h-32 w-full max-w-xs items-center justify-center overflow-hidden rounded-md border border-dashed bg-white">
           {signatureUrl ? (
             <Image
               src={signatureUrl}

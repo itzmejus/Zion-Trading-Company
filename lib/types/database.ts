@@ -41,6 +41,7 @@ export interface Database {
         Row: {
           id: string
           name: string
+          contact_person: string
           address: string
           city: string
           state: string
