@@ -43,47 +43,76 @@ export function CustomersTable({ customers }: { customers: Customer[] }) {
         />
       </div>
 
-      <div className="rounded-md border">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Company</TableHead>
-              <TableHead>Contact person</TableHead>
-              <TableHead>GSTIN</TableHead>
-              <TableHead>State</TableHead>
-              <TableHead>Phone</TableHead>
-              <TableHead className="w-24 text-right">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {filtered.length === 0 && (
-              <TableRow>
-                <TableCell colSpan={6} className="py-8 text-center text-muted-foreground">
-                  No companies found.
-                </TableCell>
-              </TableRow>
-            )}
-            {filtered.map((customer) => (
-              <TableRow key={customer.id}>
-                <TableCell className="font-medium">{customer.name}</TableCell>
-                <TableCell>{customer.contact_person || "—"}</TableCell>
-                <TableCell>{customer.gstin || "—"}</TableCell>
-                <TableCell>{customer.state || "—"}</TableCell>
-                <TableCell>{customer.phone || "—"}</TableCell>
-                <TableCell>
-                  <div className="flex justify-end gap-1">
-                    <CustomerFormDialog customer={customer} />
-                    <DeleteConfirmButton
-                      itemLabel="Company"
-                      onConfirm={() => deleteCustomer(customer.id)}
-                    />
-                  </div>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+      {filtered.length === 0 && (
+        <div className="rounded-md border py-8 text-center text-muted-foreground">
+          No companies found.
+        </div>
+      )}
+
+      {/* Mobile: stacked cards */}
+      <div className="space-y-3 sm:hidden">
+        {filtered.map((customer) => (
+          <div key={customer.id} className="space-y-2 rounded-md border p-4">
+            <div className="flex items-start justify-between gap-2">
+              <div>
+                <p className="font-semibold">{customer.name}</p>
+                {customer.contact_person && (
+                  <p className="text-sm text-muted-foreground">Attn: {customer.contact_person}</p>
+                )}
+              </div>
+              <div className="flex shrink-0 gap-1">
+                <CustomerFormDialog customer={customer} />
+                <DeleteConfirmButton
+                  itemLabel="Company"
+                  onConfirm={() => deleteCustomer(customer.id)}
+                />
+              </div>
+            </div>
+            <div className="space-y-0.5 border-t pt-2 text-sm text-muted-foreground">
+              <p>{customer.state || "—"} · {customer.phone || "—"}</p>
+              {customer.gstin && <p>GSTIN: {customer.gstin}</p>}
+            </div>
+          </div>
+        ))}
       </div>
+
+      {/* Desktop: full table */}
+      {filtered.length > 0 && (
+        <div className="hidden rounded-md border sm:block">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Company</TableHead>
+                <TableHead>Contact person</TableHead>
+                <TableHead>GSTIN</TableHead>
+                <TableHead>State</TableHead>
+                <TableHead>Phone</TableHead>
+                <TableHead className="w-24 text-right">Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {filtered.map((customer) => (
+                <TableRow key={customer.id}>
+                  <TableCell className="font-medium">{customer.name}</TableCell>
+                  <TableCell>{customer.contact_person || "—"}</TableCell>
+                  <TableCell>{customer.gstin || "—"}</TableCell>
+                  <TableCell>{customer.state || "—"}</TableCell>
+                  <TableCell>{customer.phone || "—"}</TableCell>
+                  <TableCell>
+                    <div className="flex justify-end gap-1">
+                      <CustomerFormDialog customer={customer} />
+                      <DeleteConfirmButton
+                        itemLabel="Company"
+                        onConfirm={() => deleteCustomer(customer.id)}
+                      />
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      )}
     </div>
   )
 }

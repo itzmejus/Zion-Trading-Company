@@ -9,34 +9,18 @@ export function QuotationPrintTemplate({
   quotation: QuotationWithDetails
   companyProfile: CompanyProfile
 }) {
+  const place = [quotation.customer.city, quotation.customer.state].filter(Boolean).join(", ")
+
   return (
     <div className="mx-auto w-full max-w-[210mm] bg-white p-6 text-black shadow-sm sm:p-10 print:m-0 print:w-full print:max-w-none print:p-0 print:shadow-none">
       <div className="flex flex-wrap items-start justify-between gap-4 border-b-2 border-slate-800 pb-4">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">{companyProfile.company_name}</h1>
-          <p className="mt-1 max-w-xs text-sm text-black/70">
-            {[companyProfile.address, companyProfile.city, companyProfile.state, companyProfile.pincode]
-              .filter(Boolean)
-              .join(", ")}
-          </p>
-          {companyProfile.gstin && (
-            <p className="text-sm text-black/70">GSTIN: {companyProfile.gstin}</p>
-          )}
-          {(companyProfile.phone || companyProfile.email) && (
-            <p className="text-sm text-black/70">
-              {[companyProfile.phone, companyProfile.email].filter(Boolean).join(" · ")}
-            </p>
-          )}
-        </div>
-        <div className="text-right">
-          <span className="inline-block rounded border-2 border-black px-3 py-1 text-sm font-bold tracking-widest text-black uppercase">
-            Quotation
-          </span>
-          <p className="mt-2 text-sm">
+        <h1 className="text-2xl font-bold tracking-tight uppercase">Quotation</h1>
+        <div className="text-right text-sm">
+          <p>
             <span className="text-black/60">Quote No: </span>
             <span className="font-medium">{quotation.quote_number}</span>
           </p>
-          <p className="text-sm">
+          <p>
             <span className="text-black/60">Date: </span>
             {formatDate(quotation.quote_date)}
           </p>
@@ -46,17 +30,7 @@ export function QuotationPrintTemplate({
       <div className="mt-4 rounded-md bg-slate-50 p-3">
         <p className="text-xs font-semibold tracking-wide text-black/50 uppercase">Quote for</p>
         <p className="font-semibold">{quotation.customer.name}</p>
-        {quotation.customer.contact_person && (
-          <p className="text-sm text-black/70">Attn: {quotation.customer.contact_person}</p>
-        )}
-        <p className="text-sm text-black/70">
-          {[quotation.customer.address, quotation.customer.city, quotation.customer.state, quotation.customer.pincode]
-            .filter(Boolean)
-            .join(", ")}
-        </p>
-        {quotation.customer.gstin && (
-          <p className="text-sm text-black/70">GSTIN: {quotation.customer.gstin}</p>
-        )}
+        {place && <p className="text-sm text-black/70">{place}</p>}
       </div>
 
       <table className="mt-4 w-full border-collapse text-sm">
@@ -126,7 +100,6 @@ export function QuotationPrintTemplate({
               />
             )}
           </div>
-          <p className="text-black/70">For {companyProfile.company_name}</p>
           <p className="text-xs text-black/50">Authorized Signatory</p>
         </div>
       </div>

@@ -43,48 +43,71 @@ export function QuotationsTable({ quotations }: { quotations: QuotationListItem[
         />
       </div>
 
-      <div className="rounded-md border">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Quote #</TableHead>
-              <TableHead>Company</TableHead>
-              <TableHead>Date</TableHead>
-              <TableHead className="text-right">Amount</TableHead>
-              <TableHead className="w-20 text-right">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {filtered.length === 0 && (
-              <TableRow>
-                <TableCell colSpan={5} className="py-8 text-center text-muted-foreground">
-                  No quotations found.
-                </TableCell>
-              </TableRow>
-            )}
-            {filtered.map((quotation) => (
-              <TableRow key={quotation.id}>
-                <TableCell className="font-medium">
-                  <Link href={`/quotations/${quotation.id}`} className="hover:underline">
-                    {quotation.quote_number}
-                  </Link>
-                </TableCell>
-                <TableCell>{quotation.customer_name}</TableCell>
-                <TableCell>{formatDate(quotation.quote_date)}</TableCell>
-                <TableCell className="text-right">{formatCurrency(quotation.grand_total)}</TableCell>
-                <TableCell>
-                  <div className="flex justify-end">
-                    <DeleteConfirmButton
-                      itemLabel="Quotation"
-                      onConfirm={() => deleteQuotation(quotation.id)}
-                    />
-                  </div>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+      {filtered.length === 0 && (
+        <div className="rounded-md border py-8 text-center text-muted-foreground">
+          No quotations found.
+        </div>
+      )}
+
+      {/* Mobile: stacked cards */}
+      <div className="space-y-3 sm:hidden">
+        {filtered.map((quotation) => (
+          <div key={quotation.id} className="space-y-2 rounded-md border p-4">
+            <Link href={`/quotations/${quotation.id}`} className="block">
+              <p className="font-semibold">{quotation.quote_number}</p>
+              <p className="text-sm text-muted-foreground">
+                {quotation.customer_name} · {formatDate(quotation.quote_date)}
+              </p>
+            </Link>
+            <div className="flex items-center justify-between border-t pt-2">
+              <span className="font-semibold">{formatCurrency(quotation.grand_total)}</span>
+              <DeleteConfirmButton
+                itemLabel="Quotation"
+                onConfirm={() => deleteQuotation(quotation.id)}
+              />
+            </div>
+          </div>
+        ))}
       </div>
+
+      {/* Desktop: full table */}
+      {filtered.length > 0 && (
+        <div className="hidden rounded-md border sm:block">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Quote #</TableHead>
+                <TableHead>Company</TableHead>
+                <TableHead>Date</TableHead>
+                <TableHead className="text-right">Amount</TableHead>
+                <TableHead className="w-20 text-right">Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {filtered.map((quotation) => (
+                <TableRow key={quotation.id}>
+                  <TableCell className="font-medium">
+                    <Link href={`/quotations/${quotation.id}`} className="hover:underline">
+                      {quotation.quote_number}
+                    </Link>
+                  </TableCell>
+                  <TableCell>{quotation.customer_name}</TableCell>
+                  <TableCell>{formatDate(quotation.quote_date)}</TableCell>
+                  <TableCell className="text-right">{formatCurrency(quotation.grand_total)}</TableCell>
+                  <TableCell>
+                    <div className="flex justify-end">
+                      <DeleteConfirmButton
+                        itemLabel="Quotation"
+                        onConfirm={() => deleteQuotation(quotation.id)}
+                      />
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      )}
     </div>
   )
 }
